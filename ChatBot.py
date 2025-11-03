@@ -43,35 +43,6 @@ def configurar_modelo(cliente, modelo, mensajedeentrada):
 def inicializar_estado():
     if "mensajes" not in st.session_state:
         st.session_state.mensajes = []
-    #Clase 8
-    #Actualizar historial
-def actualizar_historial(rol, contenido,avatar):
-    st.session_state.mensajes.append({"role": rol, "content":contenido, "avatar":avatar})
-  
-    #Mostrar historial
-def mostrar_historial():
-    for mensaje in st.session_state.mensajes:
-        with st.chat_message(mensaje["role"], avatar = ["avatar"]):
-            st.markdown(mensaje["content"])
-
-#Area del historial
-def area_historial():
-    contenedorDelChat = st.conteiner(height=400, border=True)
-    with contenedorDelChat:
-        mostrar_historial()
-
-
-ElegirModelo = configurar_pagina ()
-clienteusuario = crear_usuario_groq()
-inicializar_estado()
-area_historial()
-
-mensaje = st.chat_input("Escribi tu mensaje")
-if mensaje :
-    actualizar_historial("user", mensaje, "😎")
-    chat_completo = configurar_modelo(clienteusuario, ElegirModelo , mensaje)
-actualizar_historial("assitant", chat_completo, "😛")
-st.rerun()
 
 #Clase 9
 #Funcion generar_respuesta() 
@@ -104,4 +75,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
     
