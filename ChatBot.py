@@ -36,14 +36,27 @@ def configurar_modelo(cliente, modelo, mensajedeentrada):
         stream=True 
     )
 
-
-
 #creamos una funcion que nos permita hacer uso del historial. es decir, recordar los mensajes anteriores.
 
 def inicializar_estado():
     if "mensajes" not in st.session_state:
         st.session_state.mensajes = []
+  #Clase 8
+    #Actualizar historial
+def actualizar_historial(rol, contenido,avatar):
+    st.session_state.mensajes.append({"role": rol, "content":contenido, "avatar":avatar})
+  
+    #Mostrar historial
+def mostrar_historial():
+    for mensaje in st.session_state.mensajes:
+        with st.chat_message(mensaje["role"], avatar = ["avatar"]):
+            st.markdown(mensaje["content"])
 
+#Area del historial
+def area_historial():
+    contenedorDelChat = st.container(height=400, border=True)
+    with contenedorDelChat:
+        mostrar_historial()
 #Clase 9
 #Funcion generar_respuesta() 
 def generar_respuesta(chat_completo):
@@ -76,4 +89,6 @@ def main():
 if __name__ == "__main__":
     main()
 
+
     
+
